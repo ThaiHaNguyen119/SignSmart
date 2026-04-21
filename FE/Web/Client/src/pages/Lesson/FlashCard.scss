@@ -1,0 +1,147 @@
+.flashcards {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+
+  .ant-card-body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__card {
+    position: relative;
+    width: 50%;
+    height: 400px;
+    perspective: 1000px;
+    cursor: pointer;
+
+    &--flipped {
+      .flashcards__face--front {
+        transform: rotateY(-180deg);
+      }
+
+      .flashcards__face--back {
+        transform: rotateY(0deg);
+      }
+    }
+  }
+
+  &__face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.6s ease;
+
+    .ant-card {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+      &-body {
+        padding: 0;
+      }
+
+      video {
+        width: 120%;
+        height: 100%;
+        object-fit: cover;
+        clip-path: inset(0 16% 0 17%);
+      }
+    }
+
+    &--front {
+      transform: rotateY(0deg);
+
+      .ant-card {
+        font-size: 28px;
+        font-weight: 500;
+      }
+    }
+
+    &--back {
+      transform: rotateY(180deg);
+
+      .ant-card {
+        font-size: 24px;
+        font-weight: 400;
+        color: #555;
+      }
+    }
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__counter {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &__progress {
+    width: 50%;
+  }
+
+  &__detail {
+    margin-top: 120px;
+    margin-bottom: 100px;
+  }
+
+  &__title {
+    h1 {
+      font-weight: 700;
+      font-size: 3rem;
+    }
+  }
+
+  &__number {
+    margin: 15px 0;
+    font-size: 2rem;
+  }
+
+  &__items {
+    .termlist-item {
+      &__title {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      &__delete {
+        text-align: end;
+
+        .icon {
+          color: red;
+          font-size: 2rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .flashcards {
+    &__card {
+      width: 80%;
+    }
+
+    &__progress {
+      width: 80%;
+    }
+  }
+}
